@@ -23,16 +23,29 @@
 //     return [0,0];
 // };
 
+// const twoSum = (nums, target) => {
+//     if (nums.length === 2) return [0, 1];
+//     const len = nums.length;
+//     let hashmap = {};
+//     for(let i = 0; i < len; i++) {
+//         let n = target - nums[i];
+//         let find = hashmap[n];
+//         if(find !== undefined) return [find, i];
+//         else hashmap[nums[i]] = i;
+//     }
+// };
+
 const twoSum = (nums, target) => {
     if (nums.length === 2) return [0, 1];
     const len = nums.length;
-    let hashmap = {};
+    let map = new Map();
     for(let i = 0; i < len; i++) {
-        let n = target - nums[i];
-        let find = hashmap[n];
-        if(find !== undefined) return [find, i];
-        else hashmap[nums[i]] = i;
+        if(map.has(target - nums[i])) {
+            return [map.get(target - nums[i]), i];
+        } else {
+            map.set(nums[i], i);
+        }
     }
 };
-const nums = [3,4,6];
-console.log(twoSum(nums, 7));
+const nums = [3,4,4];
+console.log(twoSum(nums, 8));
